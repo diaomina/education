@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.soft.dao.Question_QuestionMapper" >
+  <resultMap id="newmap" type="java.util.Map" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="Couser_id" property="couserId" jdbcType="INTEGER" />
+    <result column="Question_content" property="questionContent" jdbcType="VARCHAR" />
+    <result column="Picture_url" property="pictureUrl" jdbcType="VARCHAR" />
+    <result column="Option_a" property="optionA" jdbcType="VARCHAR" />
+    <result column="Option_b" property="optionB" jdbcType="VARCHAR" />
+    <result column="Option_c" property="optionC" jdbcType="VARCHAR" />
+    <result column="Option_d" property="optionD" jdbcType="VARCHAR" />
+    <result column="Answer" property="answer" jdbcType="VARCHAR" />
+    <result column="Score" property="score" jdbcType="DOUBLE" />
+    <result column="Corp_id" property="corpId" jdbcType="INTEGER" />
+    <result column="Create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="Create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="Modify_by" property="modifyBy" jdbcType="VARCHAR" />
+    <result column="Modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="Status" property="status" jdbcType="BIT" />
+    <result column="Version" property="version" jdbcType="INTEGER" />
+    <result column="Question_type_id" property="questionTypeId" jdbcType="INTEGER" />
+    <result column="Chapter_name" property="chapterName" jdbcType="VARCHAR" />
+  </resultMap>
+   <resultMap id="BaseResultMap" type="com.soft.model.Question_Question" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="Couser_id" property="couserId" jdbcType="INTEGER" />
+    <result column="Question_content" property="questionContent" jdbcType="VARCHAR" />
+    <result column="Picture_url" property="pictureUrl" jdbcType="VARCHAR" />
+    <result column="Option_a" property="optionA" jdbcType="VARCHAR" />
+    <result column="Option_b" property="optionB" jdbcType="VARCHAR" />
+    <result column="Option_c" property="optionC" jdbcType="VARCHAR" />
+    <result column="Option_d" property="optionD" jdbcType="VARCHAR" />
+    <result column="Answer" property="answer" jdbcType="VARCHAR" />
+    <result column="Score" property="score" jdbcType="DOUBLE" />
+    <result column="Corp_id" property="corpId" jdbcType="INTEGER" />
+    <result column="Create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="Create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="Modify_by" property="modifyBy" jdbcType="VARCHAR" />
+    <result column="Modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="Status" property="status" jdbcType="BIT" />
+    <result column="Version" property="version" jdbcType="INTEGER" />
+    <result column="Question_type_id" property="questionTypeId" jdbcType="INTEGER" />
+  </resultMap>
+  
+  
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, Couser_id, Question_content, Picture_url, Option_a, Option_b, Option_c, Option_d, 
+    Answer, Score, Corp_id, Create_by, Create_time, Modify_by, Modify_time, Status, Version, 
+    Question_type_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.soft.model.Question_QuestionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from question_question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from question_question
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from question_question
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.soft.model.Question_QuestionExample" >
+    delete from question_question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.soft.model.Question_Question" >
+  	<selectKey keyColumn="id" keyProperty="id" resultType="int">
+		select last_insert_id();
+	</selectKey>
+    insert into question_question (id, Couser_id, Question_content, 
+      Picture_url, Option_a, Option_b, 
+      Option_c, Option_d, Answer, 
+      Score, Corp_id, Create_by, 
+      Create_time, Modify_by, Modify_time, 
+      Status, Version, Question_type_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{couserId,jdbcType=INTEGER}, #{questionContent,jdbcType=VARCHAR}, 
+      #{pictureUrl,jdbcType=VARCHAR}, #{optionA,jdbcType=VARCHAR}, #{optionB,jdbcType=VARCHAR}, 
+      #{optionC,jdbcType=VARCHAR}, #{optionD,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR}, 
+      #{score,jdbcType=DOUBLE}, #{corpId,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyBy,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=BIT}, #{version,jdbcType=INTEGER}, #{questionTypeId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.soft.model.Question_Question" >
+    insert into question_question
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="couserId != null" >
+        Couser_id,
+      </if>
+      <if test="questionContent != null" >
+        Question_content,
+      </if>
+      <if test="pictureUrl != null" >
+        Picture_url,
+      </if>
+      <if test="optionA != null" >
+        Option_a,
+      </if>
+      <if test="optionB != null" >
+        Option_b,
+      </if>
+      <if test="optionC != null" >
+        Option_c,
+      </if>
+      <if test="optionD != null" >
+        Option_d,
+      </if>
+      <if test="answer != null" >
+        Answer,
+      </if>
+      <if test="score != null" >
+        Score,
+      </if>
+      <if test="corpId != null" >
+        Corp_id,
+      </if>
+      <if test="createBy != null" >
+        Create_by,
+      </if>
+      <if test="createTime != null" >
+        Create_time,
+      </if>
+      <if test="modifyBy != null" >
+        Modify_by,
+      </if>
+      <if test="modifyTime != null" >
+        Modify_time,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="version != null" >
+        Version,
+      </if>
+      <if test="questionTypeId != null" >
+        Question_type_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="couserId != null" >
+        #{couserId,jdbcType=INTEGER},
+      </if>
+      <if test="questionContent != null" >
+        #{questionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureUrl != null" >
+        #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="optionA != null" >
+        #{optionA,jdbcType=VARCHAR},
+      </if>
+      <if test="optionB != null" >
+        #{optionB,jdbcType=VARCHAR},
+      </if>
+      <if test="optionC != null" >
+        #{optionC,jdbcType=VARCHAR},
+      </if>
+      <if test="optionD != null" >
+        #{optionD,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=DOUBLE},
+      </if>
+      <if test="corpId != null" >
+        #{corpId,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null" >
+        #{modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="questionTypeId != null" >
+        #{questionTypeId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.soft.model.Question_QuestionExample" resultType="java.lang.Integer" >
+    select count(*) from question_question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update question_question
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.couserId != null" >
+        Couser_id = #{record.couserId,jdbcType=INTEGER},
+      </if>
+      <if test="record.questionContent != null" >
+        Question_content = #{record.questionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pictureUrl != null" >
+        Picture_url = #{record.pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optionA != null" >
+        Option_a = #{record.optionA,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optionB != null" >
+        Option_b = #{record.optionB,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optionC != null" >
+        Option_c = #{record.optionC,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optionD != null" >
+        Option_d = #{record.optionD,jdbcType=VARCHAR},
+      </if>
+      <if test="record.answer != null" >
+        Answer = #{record.answer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.score != null" >
+        Score = #{record.score,jdbcType=DOUBLE},
+      </if>
+      <if test="record.corpId != null" >
+        Corp_id = #{record.corpId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createBy != null" >
+        Create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        Create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyBy != null" >
+        Modify_by = #{record.modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifyTime != null" >
+        Modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        Status = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.version != null" >
+        Version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.questionTypeId != null" >
+        Question_type_id = #{record.questionTypeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update question_question
+    set id = #{record.id,jdbcType=INTEGER},
+      Couser_id = #{record.couserId,jdbcType=INTEGER},
+      Question_content = #{record.questionContent,jdbcType=VARCHAR},
+      Picture_url = #{record.pictureUrl,jdbcType=VARCHAR},
+      Option_a = #{record.optionA,jdbcType=VARCHAR},
+      Option_b = #{record.optionB,jdbcType=VARCHAR},
+      Option_c = #{record.optionC,jdbcType=VARCHAR},
+      Option_d = #{record.optionD,jdbcType=VARCHAR},
+      Answer = #{record.answer,jdbcType=VARCHAR},
+      Score = #{record.score,jdbcType=DOUBLE},
+      Corp_id = #{record.corpId,jdbcType=INTEGER},
+      Create_by = #{record.createBy,jdbcType=VARCHAR},
+      Create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      Modify_by = #{record.modifyBy,jdbcType=VARCHAR},
+      Modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      Status = #{record.status,jdbcType=BIT},
+      Version = #{record.version,jdbcType=INTEGER},
+      Question_type_id = #{record.questionTypeId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.soft.model.Question_Question" >
+    update question_question
+    <set >
+      <if test="couserId != null" >
+        Couser_id = #{couserId,jdbcType=INTEGER},
+      </if>
+      <if test="questionContent != null" >
+        Question_content = #{questionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureUrl != null" >
+        Picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="optionA != null" >
+        Option_a = #{optionA,jdbcType=VARCHAR},
+      </if>
+      <if test="optionB != null" >
+        Option_b = #{optionB,jdbcType=VARCHAR},
+      </if>
+      <if test="optionC != null" >
+        Option_c = #{optionC,jdbcType=VARCHAR},
+      </if>
+      <if test="optionD != null" >
+        Option_d = #{optionD,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        Answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        Score = #{score,jdbcType=DOUBLE},
+      </if>
+      <if test="corpId != null" >
+        Corp_id = #{corpId,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        Create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        Create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null" >
+        Modify_by = #{modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        Modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        Status = #{status,jdbcType=BIT},
+      </if>
+      <if test="version != null" >
+        Version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="questionTypeId != null" >
+        Question_type_id = #{questionTypeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.soft.model.Question_Question" >
+    update question_question
+    set Couser_id = #{couserId,jdbcType=INTEGER},
+      Question_content = #{questionContent,jdbcType=VARCHAR},
+      Picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      Option_a = #{optionA,jdbcType=VARCHAR},
+      Option_b = #{optionB,jdbcType=VARCHAR},
+      Option_c = #{optionC,jdbcType=VARCHAR},
+      Option_d = #{optionD,jdbcType=VARCHAR},
+      Answer = #{answer,jdbcType=VARCHAR},
+      Score = #{score,jdbcType=DOUBLE},
+      Corp_id = #{corpId,jdbcType=INTEGER},
+      Create_by = #{createBy,jdbcType=VARCHAR},
+      Create_time = #{createTime,jdbcType=TIMESTAMP},
+      Modify_by = #{modifyBy,jdbcType=VARCHAR},
+      Modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      Status = #{status,jdbcType=BIT},
+      Version = #{version,jdbcType=INTEGER},
+      Question_type_id = #{questionTypeId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectQuestionByList" resultMap="BaseResultMap">
+  select * from question_question where id in
+  <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+          #{item}
+      </foreach>
+  
+  
+  </select>
+  
+  <select id="showAllQuestionAndChapter" parameterType="java.lang.Integer" resultMap="newmap">
+  SELECT a.* ,b.chapter_name from question_question a, chapter b where a.Couser_id=b.chapter_id and a.Corp_id=#{corpId}
+  
+  </select>
+   <select id="showAllQuestionAndChapter2" parameterType="java.lang.Integer" resultMap="newmap">
+  SELECT a.* ,b.chapter_name from question_question a, chapter b where a.Couser_id=b.chapter_id and a.Corp_id=#{corpId} and a.Couser_id=#{chapterId}
+  
+  </select>
+  
+  
+</mapper>

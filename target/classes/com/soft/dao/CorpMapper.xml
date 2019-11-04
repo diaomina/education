@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.soft.dao.CorpMapper" >
+  <resultMap id="BaseResultMap" type="com.soft.model.Corp" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="Corp_name" property="corpName" jdbcType="VARCHAR" />
+    <result column="Register_datetime" property="registerDatetime" jdbcType="TIMESTAMP" />
+    <result column="Corp_descripion" property="corpDescripion" jdbcType="VARCHAR" />
+    <result column="Create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="Create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="Modify_by" property="modifyBy" jdbcType="VARCHAR" />
+    <result column="Modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="Status" property="status" jdbcType="BIT" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, Corp_name, Register_datetime, Corp_descripion, Create_by, Create_time, Modify_by, 
+    Modify_time, Status, version
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.soft.model.CorpExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from corp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from corp
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from corp
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.soft.model.CorpExample" >
+    delete from corp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.soft.model.Corp" >
+    insert into corp (id, Corp_name, Register_datetime, 
+      Corp_descripion, Create_by, Create_time, 
+      Modify_by, Modify_time, Status, 
+      version)
+    values (#{id,jdbcType=INTEGER}, #{corpName,jdbcType=VARCHAR}, #{registerDatetime,jdbcType=TIMESTAMP}, 
+      #{corpDescripion,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyBy,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, #{status,jdbcType=BIT}, 
+      #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.soft.model.Corp" >
+    insert into corp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="corpName != null" >
+        Corp_name,
+      </if>
+      <if test="registerDatetime != null" >
+        Register_datetime,
+      </if>
+      <if test="corpDescripion != null" >
+        Corp_descripion,
+      </if>
+      <if test="createBy != null" >
+        Create_by,
+      </if>
+      <if test="createTime != null" >
+        Create_time,
+      </if>
+      <if test="modifyBy != null" >
+        Modify_by,
+      </if>
+      <if test="modifyTime != null" >
+        Modify_time,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="corpName != null" >
+        #{corpName,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDatetime != null" >
+        #{registerDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="corpDescripion != null" >
+        #{corpDescripion,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null" >
+        #{modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.soft.model.CorpExample" resultType="java.lang.Integer" >
+    select count(*) from corp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update corp
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.corpName != null" >
+        Corp_name = #{record.corpName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registerDatetime != null" >
+        Register_datetime = #{record.registerDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.corpDescripion != null" >
+        Corp_descripion = #{record.corpDescripion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null" >
+        Create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        Create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyBy != null" >
+        Modify_by = #{record.modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifyTime != null" >
+        Modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        Status = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update corp
+    set id = #{record.id,jdbcType=INTEGER},
+      Corp_name = #{record.corpName,jdbcType=VARCHAR},
+      Register_datetime = #{record.registerDatetime,jdbcType=TIMESTAMP},
+      Corp_descripion = #{record.corpDescripion,jdbcType=VARCHAR},
+      Create_by = #{record.createBy,jdbcType=VARCHAR},
+      Create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      Modify_by = #{record.modifyBy,jdbcType=VARCHAR},
+      Modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      Status = #{record.status,jdbcType=BIT},
+      version = #{record.version,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.soft.model.Corp" >
+    update corp
+    <set >
+      <if test="corpName != null" >
+        Corp_name = #{corpName,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDatetime != null" >
+        Register_datetime = #{registerDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="corpDescripion != null" >
+        Corp_descripion = #{corpDescripion,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        Create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        Create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null" >
+        Modify_by = #{modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        Modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        Status = #{status,jdbcType=BIT},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.soft.model.Corp" >
+    update corp
+    set Corp_name = #{corpName,jdbcType=VARCHAR},
+      Register_datetime = #{registerDatetime,jdbcType=TIMESTAMP},
+      Corp_descripion = #{corpDescripion,jdbcType=VARCHAR},
+      Create_by = #{createBy,jdbcType=VARCHAR},
+      Create_time = #{createTime,jdbcType=TIMESTAMP},
+      Modify_by = #{modifyBy,jdbcType=VARCHAR},
+      Modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      Status = #{status,jdbcType=BIT},
+      version = #{version,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

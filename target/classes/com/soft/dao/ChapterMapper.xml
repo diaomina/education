@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.soft.dao.ChapterMapper" >
+  <resultMap id="BaseResultMap" type="com.soft.model.Chapter" >
+    <id column="Chapter_id" property="chapterId" jdbcType="INTEGER" />
+    <result column="Chapter_name" property="chapterName" jdbcType="VARCHAR" />
+    <result column="Cuorse_id" property="cuorseId" jdbcType="INTEGER" />
+    <result column="Create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="Create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="Modify_by" property="modifyBy" jdbcType="VARCHAR" />
+    <result column="Modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="Corp_id" property="corpId" jdbcType="INTEGER" />
+    <result column="Version" property="version" jdbcType="INTEGER" />
+    <result column="Status" property="status" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Chapter_id, Chapter_name, Cuorse_id, Create_by, Create_time, Modify_by, Modify_time, 
+    Corp_id, Version, Status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.soft.model.ChapterExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from chapter
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from chapter
+    where Chapter_id = #{chapterId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from chapter
+    where Chapter_id = #{chapterId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.soft.model.ChapterExample" >
+    delete from chapter
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.soft.model.Chapter" >
+    insert into chapter (Chapter_id, Chapter_name, Cuorse_id, 
+      Create_by, Create_time, Modify_by, 
+      Modify_time, Corp_id, Version, 
+      Status)
+    values (#{chapterId,jdbcType=INTEGER}, #{chapterName,jdbcType=VARCHAR}, #{cuorseId,jdbcType=INTEGER}, 
+      #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifyBy,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{corpId,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, 
+      #{status,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.soft.model.Chapter" >
+    insert into chapter
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="chapterId != null" >
+        Chapter_id,
+      </if>
+      <if test="chapterName != null" >
+        Chapter_name,
+      </if>
+      <if test="cuorseId != null" >
+        Cuorse_id,
+      </if>
+      <if test="createBy != null" >
+        Create_by,
+      </if>
+      <if test="createTime != null" >
+        Create_time,
+      </if>
+      <if test="modifyBy != null" >
+        Modify_by,
+      </if>
+      <if test="modifyTime != null" >
+        Modify_time,
+      </if>
+      <if test="corpId != null" >
+        Corp_id,
+      </if>
+      <if test="version != null" >
+        Version,
+      </if>
+      <if test="status != null" >
+        Status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="chapterId != null" >
+        #{chapterId,jdbcType=INTEGER},
+      </if>
+      <if test="chapterName != null" >
+        #{chapterName,jdbcType=VARCHAR},
+      </if>
+      <if test="cuorseId != null" >
+        #{cuorseId,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null" >
+        #{modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="corpId != null" >
+        #{corpId,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.soft.model.ChapterExample" resultType="java.lang.Integer" >
+    select count(*) from chapter
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update chapter
+    <set >
+      <if test="record.chapterId != null" >
+        Chapter_id = #{record.chapterId,jdbcType=INTEGER},
+      </if>
+      <if test="record.chapterName != null" >
+        Chapter_name = #{record.chapterName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cuorseId != null" >
+        Cuorse_id = #{record.cuorseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createBy != null" >
+        Create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        Create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyBy != null" >
+        Modify_by = #{record.modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifyTime != null" >
+        Modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.corpId != null" >
+        Corp_id = #{record.corpId,jdbcType=INTEGER},
+      </if>
+      <if test="record.version != null" >
+        Version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        Status = #{record.status,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update chapter
+    set Chapter_id = #{record.chapterId,jdbcType=INTEGER},
+      Chapter_name = #{record.chapterName,jdbcType=VARCHAR},
+      Cuorse_id = #{record.cuorseId,jdbcType=INTEGER},
+      Create_by = #{record.createBy,jdbcType=VARCHAR},
+      Create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      Modify_by = #{record.modifyBy,jdbcType=VARCHAR},
+      Modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      Corp_id = #{record.corpId,jdbcType=INTEGER},
+      Version = #{record.version,jdbcType=INTEGER},
+      Status = #{record.status,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.soft.model.Chapter" >
+    update chapter
+    <set >
+      <if test="chapterName != null" >
+        Chapter_name = #{chapterName,jdbcType=VARCHAR},
+      </if>
+      <if test="cuorseId != null" >
+        Cuorse_id = #{cuorseId,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        Create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        Create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null" >
+        Modify_by = #{modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        Modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="corpId != null" >
+        Corp_id = #{corpId,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        Version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        Status = #{status,jdbcType=BIT},
+      </if>
+    </set>
+    where Chapter_id = #{chapterId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.soft.model.Chapter" >
+    update chapter
+    set Chapter_name = #{chapterName,jdbcType=VARCHAR},
+      Cuorse_id = #{cuorseId,jdbcType=INTEGER},
+      Create_by = #{createBy,jdbcType=VARCHAR},
+      Create_time = #{createTime,jdbcType=TIMESTAMP},
+      Modify_by = #{modifyBy,jdbcType=VARCHAR},
+      Modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      Corp_id = #{corpId,jdbcType=INTEGER},
+      Version = #{version,jdbcType=INTEGER},
+      Status = #{status,jdbcType=BIT}
+    where Chapter_id = #{chapterId,jdbcType=INTEGER}
+  </update>
+</mapper>

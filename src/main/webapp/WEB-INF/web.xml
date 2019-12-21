@@ -53,7 +53,9 @@
     <servlet-name>dispatcherServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
-  <filter>
+  
+  <!-- 原始过滤器 -->
+  <!-- <filter>
     <display-name>CharactorFilter</display-name>
     <filter-name>CharactorFilter</filter-name>
     <filter-class>com.soft.filter.CharactorFilter</filter-class>
@@ -65,7 +67,7 @@
   <filter-mapping>
     <filter-name>CharactorFilter</filter-name>
     <url-pattern>/*</url-pattern>
-  </filter-mapping>
+  </filter-mapping> -->
   <listener>
     <listener-class>com.soft.listener.LoginSessionListener</listener-class>
   </listener>

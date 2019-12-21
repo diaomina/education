@@ -64,7 +64,7 @@ public class DailyPracticeAction {
 		// 当天答题后禁止重复作答
 		if(answerService.getDailyAnswer(example1).size()>0) {
 			PrintWriter out = response.getWriter();
-			out.print("<script language=\"javascript\">alert('您当日已作答，请明天再来吧！');"
+			out.print("<script language=\"javascript\">alert('您今天已作答，请明天再来吧！');"
 					+ "window.location.href='../dailyscore/showmyscore';</script>");
 			out.flush();
 			out.close();

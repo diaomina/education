@@ -16,16 +16,8 @@
 <link href="<%=basePath%>css/main.css" rel="stylesheet" type="text/css" />
 <link href="<%=basePath%>css/iconfont.css" rel="stylesheet" type="text/css" />
 <link href="<%=basePath%>css/test.css" rel="stylesheet" type="text/css" />
-
 </head>
 <body>
-	<nav class="breadcrumb"> <i class="Hui-iconfont">&#xe67f;</i> 首页
-		<span class="c-gray en">&gt;</span> 每日一练<span class="c-gray en">&gt;</span>
-		我的每日一练 <a class="btn btn-success radius r mr-20"
-		style="line-height: 1.6em; margin-top: 3px"
-		href="javascript:location.replace(location.href);" title="刷新">
-		<i class="Hui-iconfont">&#xe68f;</i></a>
-	</nav>
 	<div class="tip">
 		<c:if test="${questions.size()==0}">
 			<font color="red">今天没有题目，请联系老师添加题目</font>

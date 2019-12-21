@@ -7,10 +7,10 @@
 	pageContext.setAttribute("webpath", path);
 %>
 <%
-    response.setHeader("Pragma", "no-cache");
-    response.setHeader("Cache-Control", "no-cache,must-revalidate");
-    response.setDateHeader("Expires", 0);
-     response.flushBuffer();
+	response.setHeader("Pragma", "no-cache");
+	response.setHeader("Cache-Control", "no-cache,must-revalidate");
+	response.setDateHeader("Expires", 0);
+	response.flushBuffer();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -41,15 +41,16 @@
 <body>
 	<header class="Hui-header cl"> <a class="Hui-logo l"
 		title="题库管理平台教师端 v1.0" href="login/login2">题库管理平台 学生端</a> <span
-		class="Hui-subtitle l">V1.0</span> 
+		class="Hui-subtitle l">V1.0</span>
 	<ul class="Hui-userbar">
-		<li class="dropDown dropDown_hover"><a
-			class="dropDown_A">${student.stuName} <i class="Hui-iconfont">&#xe6d5;</i></a>
+		<li class="dropDown dropDown_hover"><a class="dropDown_A">${student.stuName}
+				<i class="Hui-iconfont">&#xe6d5;</i>
+		</a>
 			<ul class="dropDown-menu radius box-shadow">
 				<li><a href="students/toStudentInfoPage">个人信息</a></li>
 				<li><a href="javascript:loginOut();">退出</a></li>
 			</ul></li>
-		
+
 		<li id="Hui-skin" class="dropDown right dropDown_hover"><a
 			href="javascript:;" title="换肤"><i class="Hui-iconfont"
 				style="font-size: 18px">&#xe62a;</i></a>
@@ -73,13 +74,13 @@
 			</dt>
 			<dd>
 				<ul>
-					<li><a _href=""
-						href="javascript:void(0)">账户信息</a></li>
-						<li><a _href="students/updateStudentPasswordUI"href="javascript:void(0)">修改密码</a></li>
+					<li><a _href="" href="javascript:void(0)">账户信息</a></li>
+					<li><a _href="students/updateStudentPasswordUI"
+						href="javascript:void(0)">修改密码</a></li>
 				</ul>
 			</dd>
 		</dl>
-		
+
 		<dl id="menu-comments">
 			<dt>
 				<i class="Hui-iconfont">&#xe622;</i> 每日一练<i
@@ -88,7 +89,8 @@
 			<dd>
 				<ul>
 					<li><a _href="daily/dailyquestion" href="javascript:;">进入每日一练</a></li>
-					<li><a _href="dailyscore/showmyscore" href="javascript:void(0)">查看每日一练以往成绩</a></li>
+					<li><a _href="dailyscore/showmyscore"
+						href="javascript:void(0)">查看每日一练以往成绩</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -101,7 +103,8 @@
 				<ul>
 					<li><a _href="chapter/chapterShowStudent?cuorseId=1"
 						href="javascript:;">进入章节练习</a></li>
-					<li><a _href="chapterScope/findChapterScope" href="javascript:;">查看章节练习以往成绩</a></li>
+					<li><a _href="chapterScope/findChapterScope"
+						href="javascript:;">查看章节练习以往成绩</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -112,12 +115,14 @@
 			</dt>
 			<dd>
 				<ul>
-					<li><a _href="paper/toChoosePaperPage" href="javascript:void(0)">试卷选择</a></li>
-					<li><a _href="paperScore/toStudentScore" href="javascript:void(0)">查看试卷以往成绩</a></li>
+					<li><a _href="paper/toChoosePaperPage"
+						href="javascript:void(0)">试卷选择</a></li>
+					<li><a _href="paperScore/toStudentScore"
+						href="javascript:void(0)">查看试卷以往成绩</a></li>
 				</ul>
 			</dd>
 		</dl>
-		
+
 		<dl id="menu-product">
 			<dt>
 				<i class="Hui-iconfont">&#xe620;</i> 错题库<i
@@ -173,11 +178,11 @@
 	 function loginOut() {
 		 if(confirm("是否确认退出")){
 			 location.replace("<%=path%>/login.jsp"); //loginOut即是你所要转的退出登录的地址
-	        }else{
-		        return false;
-	        }
-        
-     }
+			} else {
+				return false;
+			}
+
+		}
 		/*资讯-添加*/
 		function article_add(title, url) {
 			var index = layer.open({

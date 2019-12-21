@@ -7,10 +7,10 @@
 	pageContext.setAttribute("webpath", path);
 %>
 <%
-    response.setHeader("Pragma", "no-cache");
-    response.setHeader("Cache-Control", "no-cache,must-revalidate");
-    response.setDateHeader("Expires", 0);
-     response.flushBuffer();
+	response.setHeader("Pragma", "no-cache");
+	response.setHeader("Cache-Control", "no-cache,must-revalidate");
+	response.setDateHeader("Expires", 0);
+	response.flushBuffer();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -40,16 +40,17 @@
 <body>
 	<header class="Hui-header cl"> <a class="Hui-logo l"
 		title="题库管理平台教师端 v1.0" href="login/login1">在线教育平台 教师端</a> <span
-		class="Hui-subtitle l">V1.0</span> 
+		class="Hui-subtitle l">V1.0</span>
 	<ul class="Hui-userbar">
-		<li class="dropDown dropDown_hover"><a 
-			class="dropDown_A">${teacher.teacherName} <i class="Hui-iconfont">&#xe6d5;</i></a>
+		<li class="dropDown dropDown_hover"><a class="dropDown_A">${teacher.teacherName}
+				<i class="Hui-iconfont">&#xe6d5;</i>
+		</a>
 			<ul class="dropDown-menu radius box-shadow">
 				<li><a href="login/login1">个人信息</a></li>
 				<!-- <li><a href="login/login1">切换账户</a></li> -->
 				<li><a href="javascript:loginOut();">退出</a></li>
 			</ul></li>
-	
+
 		<li id="Hui-skin" class="dropDown right dropDown_hover"><a
 			href="javascript:;" title="换肤"><i class="Hui-iconfont"
 				style="font-size: 18px">&#xe62a;</i></a>
@@ -73,9 +74,9 @@
 			</dt>
 			<dd>
 				<ul>
-					<li><a _href=""
-						href="javascript:void(0)">账户信息</a></li>
-						<li><a _href="teachers/updateTeacherPasswordUI"href="javascript:void(0)">修改密码</a></li>
+					<li><a _href="" href="javascript:void(0)">账户信息</a></li>
+					<li><a _href="teachers/updateTeacherPasswordUI"
+						href="javascript:void(0)">修改密码</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -86,24 +87,21 @@
 			</dt>
 			<dd>
 				<ul>
-					<li><a _href="courses/getall"
-						href="javascript:void(0)">查看所有课程</a></li>
+					<li><a _href="courses/getall" href="javascript:void(0)">查看所有课程</a></li>
 				</ul>
 				<ul>
-					<li><a _href="courses/getcourse"
-						href="javascript:void(0)">查询课程</a></li>
+					<li><a _href="courses/getcourse" href="javascript:void(0)">查询课程</a></li>
 				</ul>
 				<ul>
-					<li><a _href="courses/addfirst"
-						href="javascript:void(0)">添加课程</a></li>
+					<li><a _href="courses/addfirst" href="javascript:void(0)">添加课程</a></li>
 				</ul>
 				<ul>
-					<li><a _href="courses/getallone"
-						href="javascript:void(0)">删除修改课程</a></li>
+					<li><a _href="courses/getallone" href="javascript:void(0)">删除修改课程</a></li>
 				</ul>
-				
+
 			</dd>
 		</dl>
+
 		<dl id="menu-picture">
 			<dt>
 				<i class="Hui-iconfont">&#xe613;</i> 学生管理<i
@@ -111,16 +109,13 @@
 			</dt>
 			<dd>
 				<ul>
-					<li><a _href="students/getall"
-						href="javascript:void(0)">查看所有学生</a></li>
+					<li><a _href="students/getall" href="javascript:void(0)">查看所有学生</a></li>
 				</ul>
 				<ul>
-					<li><a _href="students/findstu"
-						href="javascript:void(0)">查询学生</a></li>
+					<li><a _href="students/findstu" href="javascript:void(0)">查询学生</a></li>
 				</ul>
 				<ul>
-					<li><a _href="students/addone"
-						href="javascript:void(0)">添加学生</a></li>
+					<li><a _href="students/addone" href="javascript:void(0)">添加学生</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -133,7 +128,7 @@
 				<ul>
 					<li><a _href="question_type/showQuestionTypes"
 						href="javascript:void(0)">查看所有题型</a></li>
-						<li><a _href="QuestionBank/showAllQuestion"
+					<li><a _href="QuestionBank/showAllQuestion"
 						href="javascript:void(0)">查看所有题目</a></li>
 				</ul>
 			</dd>
@@ -166,8 +161,7 @@
 			</dt>
 			<dd>
 				<ul>
-					<li><a _href="chapter/showCourse"
-						href="javascript:;">管理章节</a></li>
+					<li><a _href="chapter/showCourse" href="javascript:;">管理章节</a></li>
 					<!-- <li><a _href="paperAnswer/toPaperAnswer2" href="javascript:;">添加章节练习</a></li> -->
 				</ul>
 			</dd>
@@ -181,9 +175,10 @@
 				<ul>
 					<li><a _href="paper/paperDisplay" href="javascript:void(0)">查看试卷</a></li>
 					<li><a _href="paper/toPaperAdd" href="javascript:void(0)">添加试卷</a></li>
-				<!-- 	<li><a _href="paper/toChoosePaperPage" href="javascript:void(0)">进入考试页面</a></li> -->
+					<!-- 	<li><a _href="paper/toChoosePaperPage" href="javascript:void(0)">进入考试页面</a></li> -->
 					<!-- <li><a _href="paperAnswer/toPaperAnswer2"href="javascript:void(0)">查看学生做题情况</a></li> -->
-					<li><a _href="paperScore/toPaperScore"href="javascript:void(0)">查看学生做题情况</a></li>
+					<li><a _href="paperScore/toPaperScore"
+						href="javascript:void(0)">查看学生做题情况</a></li>
 					<!-- <li><a _href="paperScore/toStudentScore" href="javascript:void(0)">查看以往成绩</a></li> -->
 				</ul>
 			</dd>
@@ -231,11 +226,11 @@
 	 function loginOut() {
 		 if(confirm("是否确认退出")){
 			 location.replace("<%=path%>/login.jsp"); //loginOut即是你所要转的退出登录的地址
-	        }else{
-		        return false;
-	        }
-       
-    }
+			} else {
+				return false;
+			}
+
+		}
 		/*资讯-添加*/
 		function article_add(title, url) {
 			var index = layer.open({

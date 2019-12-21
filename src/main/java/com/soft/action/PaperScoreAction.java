@@ -58,10 +58,10 @@ public class PaperScoreAction {
 	private PaperService paperService;
 	@Autowired 
 	private CourseService courseService;
+	
+	
 	@RequestMapping("/toStudentScore")
 	public String toPaperPage(Map<String, Object> map,HttpSession session,@RequestParam(value = "pagenum", defaultValue = "1") Integer pagenum) {
-
-
 		Student student =(Student)session.getAttribute("student");
 		PaperScoreExample paperScoreExample=new PaperScoreExample();
 		Criteria criteria=paperScoreExample.createCriteria();
@@ -92,17 +92,23 @@ public class PaperScoreAction {
 		return "paper/StudentScore";
 	}
 	
+	
+	/**
+	 * 
+	 * @param map
+	 * @param tId
+	 * @return
+	 * 
+	 * 教师端选择查看某个学生的成绩之后，传递过来学生的id
+	 * 此处通过学生的id查询学生的做题情况。
+	 * 
+	 */
 	@RequestMapping("/toStudentScore2")
 	public String toPaperPage3(Map<String, Object> map,@RequestParam(value = "tId", defaultValue = "1") Integer tId) {
 
 		PaperScoreExample paperScoreExample=new PaperScoreExample();
 		Criteria criteria=paperScoreExample.createCriteria();
 		criteria.andStuIdEqualTo(tId);
-		/*List<PaperScore> lists=paperScoreService.selectPaperScoreByexample(paperScoreExample);
-		map.put("lists", lists);*/
-		
-		
-		
 		List<PaperScore> lists=paperScoreService.selectPaperScoreByexample(paperScoreExample);
 		List<StudentScoreVo> lists2=new ArrayList<StudentScoreVo>();
 	
@@ -127,7 +133,17 @@ public class PaperScoreAction {
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @param pagenum
+	 * @param map
+	 * @param request
+	 * @return
+	 * 
+	 * 给教师端展示所有学生
+	 * 方便教师选择某个学生，查看学生的做题情况
+	 * 
+	 */
 	@RequestMapping("/toPaperScore")
 	public String toPaperPage2(@RequestParam(value = "pagenum", defaultValue = "1") Integer pagenum,
 			Map<String, Object> map,HttpServletRequest request) {
@@ -144,7 +160,17 @@ public class PaperScoreAction {
 
 	
 
-
+	/**
+	 * 
+	 * @param tId
+	 * @param paperId
+	 * @param map
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 * 
+	 * 展示给教师，某个学生的具体答题情况。
+	 */
 	//教师查看学生的做题情况的页面，多表查询
 	@RequestMapping("/toPaperAnswer2")
 	public String toPaperPage2(Integer tId,Integer paperId,Map<String, Object> map,HttpSession session) throws Exception{
@@ -159,10 +185,7 @@ public class PaperScoreAction {
 			
 		if (paperId != null){
 			criteria.andPaperIdEqualTo(paperId);
-		}
-		
-
-
+			}
 		List<PaperAnswerQuestionStudentAreaVo> list=new ArrayList<PaperAnswerQuestionStudentAreaVo>();
 
 		List<PaperAnswer> paperAnswers=paperAnswerService.findAllListPaperAnswer(paperAnswerExample);
@@ -206,14 +229,6 @@ public class PaperScoreAction {
 			}
 			list.add(paperAnswerQuestionStudentAreaVo);
 		}
-
-
-		/*for(PaperAnswerQuestionStudentAreaVo lists:list){
-			System.out.println(lists);
-		}
-		return null;*/
-
-
 			map.put("paperAnswerss",list);
 			return "paper/paperanswer2";
 	}

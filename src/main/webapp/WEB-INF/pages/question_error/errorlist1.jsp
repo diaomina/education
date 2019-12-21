@@ -100,13 +100,13 @@
 											<div class="test_content_nr_main">
 												<ul>
 														<li class="option">
-															<input type="radio" class="radioOrCheck" name="${question.id}" id="${question.id}_option_1" value="true"/>
+															<input type="radio" class="radioOrCheck" name="${question.id}" id="${question.id}_option_1" value="对"/>
 															<label for="${question.id}_option_1">
 																对
 															</label>
 														</li>
 														<li class="option">
-															<input type="radio" class="radioOrCheck" name="${question.id}" id="${question.id}_option_2" value="false"/>
+															<input type="radio" class="radioOrCheck" name="${question.id}" id="${question.id}_option_2" value="错"/>
 															<label for="${question.id}_option_2">
 																错
 															</label>

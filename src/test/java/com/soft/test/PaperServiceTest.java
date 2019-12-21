@@ -36,7 +36,7 @@ public class PaperServiceTest {
 	
 	@Test
 	public void getPaperByCourseId() {
-		Integer courseId = 10;
+		Integer courseId = 888;
 		PaperExample example1 = new PaperExample();
 		Criteria criteria1 = example1.createCriteria();
 		criteria1.andCourseIdEqualTo(courseId);

@@ -1,14 +1,16 @@
 # education
 ### **在线教育平台**
 
-**体验连接：**  [点这里](http://39.108.5.98/education/)  
+**体验连接：**  [点这里](http://39.108.5.98/education/)  （已失效）
 
 **学生账号：**  
 账号：student   密码：123456  
 **教师账号：**  
 账号：teacher   密码：123456
 
+觉得对你有帮助的话请作者喝杯咖啡趴~Thanks♪(･ω･)ﾉ
 
+![微信收款码](https://cdn.jsdelivr.net/gh/diaomina/project-images@master/%E6%94%B6%E6%AC%BE%E7%A0%81/wx.jpg)
 
 **开发环境：**Eclipse+Tomcat8.0+MySQL5.5+SVN+Maven 
 
